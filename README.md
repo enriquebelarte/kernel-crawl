@@ -5,6 +5,6 @@ vendor_dir - Directory under root where outputs will be saved. source_dir and da
 driver_url - Where JSON for driver versions can be downloaded\
 kernel_url - Where JSON for kernel versions can be downloaded\
 source_dir - Where downloaded JSON files will be saved\
-data_dir - Where matrix JSON files will be saved\
+data_dir - Where matrix JSON files will be saved
 
 
