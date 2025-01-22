@@ -1,0 +1,6 @@
+{
+  "driver_url": "https://raw.githubusercontent.com/enriquebelarte/kernel-crawl/refs/heads/main/sample-vendor/sources/driver-versions.json",
+  "kernel_url": "https://raw.githubusercontent.com/enriquebelarte/kernel-crawl/refs/heads/main/sample-vendor/sources/kernel-versions.json",
+  "source_dir": "sot/",
+  "data_dir": "data/"
+}
