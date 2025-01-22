@@ -4,13 +4,10 @@ import os
 import time
 
 # Function to load and save remote JSONs for kernels and drivers
-def download_json(url, local_path):
+def load_json_from_url(url):
     response = requests.get(url)
     response.raise_for_status() 
     return response.json()
-    with open(local_path, "w") as file:
-        json.dump(json_data, file, indent=4)
-    print(f"Downloaded JSON from {url} and saved to {local_path}")
     return json_data
 
 # Load config parameters
@@ -25,16 +22,19 @@ driver_url = config["driver_url"]
 # Directory where original (source of truth) JSONs will be downloaded to
 source_dir = config["source_dir"]
 data_dir = config["data_dir"]
+ts = int(time.time())
 
 # Fetch and save kernel.json and driver.json from URLs
-#kernel_json = load_json_from_url(kernel_url)
-#driver_json = load_json_from_url(driver_url)
-# Save them
+kernel_json = load_json_from_url(kernel_url)
+driver_json = load_json_from_url(driver_url)
+
+def save_json(local_json, downloaded_json):
+    with open(downloaded_json, "w") as f:
+       json.dump(local_json, f, indent=4)
+
 os.makedirs(source_dir, exist_ok=True)  
-kernel_local_path = os.path.join(source_dir, "kernel.json")
-driver_local_path = os.path.join(source_dir, "driver.json")
-kernel_json = download_json(kernel_url, kernel_local_path)
-driver_json = download_json(driver_url, driver_local_path)
+kernel_local_json = save_json(kernel_json, source_dir+f"kernel-versions-{ts}.json")
+driver_local_json= save_json(driver_json, source_dir+f"driver-versions-{ts}.json")
 
 # Generate the kernel/driver matrix JSON
 output_json = {"KERNEL_VERSION": {}}
@@ -49,7 +49,6 @@ for kernel_version, kernel_list in kernel_json["kernel-versions"].items():
             output_json["KERNEL_VERSION"][kernel]["DRIVER_VERSION"][driver_version] = driver_data
 
 # Save matrix to a file
-ts = int(time.time())
 output_filename = data_dir+f"matrix-{ts}.json"
 with open(output_filename, "w") as outfile:
     json.dump(output_json, outfile, indent=4)
