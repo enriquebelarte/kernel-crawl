@@ -17,6 +17,7 @@ def load_config(config_file):
 
 config_file = "config.json"
 config = load_config(config_file)
+vendor_dir = config["vendor_dir"]
 kernel_url = config["kernel_url"]
 driver_url = config["driver_url"]
 # Directory where original (source of truth) JSONs will be downloaded to
@@ -32,9 +33,9 @@ def save_json(local_json, downloaded_json):
     with open(downloaded_json, "w") as f:
        json.dump(local_json, f, indent=4)
 
-os.makedirs(source_dir, exist_ok=True)  
-kernel_local_json = save_json(kernel_json, source_dir+f"kernel-versions-{ts}.json")
-driver_local_json= save_json(driver_json, source_dir+f"driver-versions-{ts}.json")
+os.makedirs(vendor_dir+source_dir, exist_ok=True)  
+kernel_local_json = save_json(kernel_json, vendor_dir+source_dir+f"kernel-versions-{ts}.json")
+driver_local_json= save_json(driver_json, vendor_dir+source_dir+f"driver-versions-{ts}.json")
 
 # Generate the kernel/driver matrix JSON
 output_json = {"KERNEL_VERSION": {}}
@@ -49,7 +50,7 @@ for kernel_version, kernel_list in kernel_json["kernel-versions"].items():
             output_json["KERNEL_VERSION"][kernel]["DRIVER_VERSION"][driver_version] = driver_data
 
 # Save matrix to a file
-output_filename = data_dir+f"matrix-{ts}.json"
+output_filename = vendor_dir+data_dir+f"matrix-{ts}.json"
 with open(output_filename, "w") as outfile:
     json.dump(output_json, outfile, indent=4)
 

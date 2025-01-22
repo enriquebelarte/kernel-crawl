@@ -1,0 +1,47 @@
+{
+    "DRIVER_VERSION": {
+        "565.77": {
+            "BUILD": "Y",
+            "RELEASE_DATE": "2024-12-05",
+            "CHECKSUM": "a3f5e9c1234567890abcdef123456789",
+            "DRIVER_STATUS": "RC",
+            "ARCH": [
+                "x86_64",
+                "ppc64le"
+            ],
+            "TAGS": [
+                "beta",
+                "test",
+                "graphics"
+            ]
+        },
+        "560.28.03": {
+            "BUILD": "N",
+            "RELEASE_DATE": "2025-01-20",
+            "CHECKSUM": "abcd1234567890abcdefd567890ef",
+            "DRIVER_STATUS": "LTS",
+            "ARCH": [
+                "x86_64"
+            ],
+            "TAGS": [
+                "stable",
+                "production"
+            ]
+        },
+        "515.43.04": {
+            "BUILD": "Y",
+            "RELEASE_DATE": "2025-01-22",
+            "CHECKSUM": "abcd1234567890abcdef1234567890ef",
+            "DRIVER_STATUS": "PROD",
+            "ARCH": [
+                "x86_64",
+                "ppc64le",
+                "arm64"
+            ],
+            "TAGS": [
+                "new-feature",
+                "performance"
+            ]
+        }
+    }
+}
