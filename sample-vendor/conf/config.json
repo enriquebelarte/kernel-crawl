@@ -1,4 +1,4 @@
 {
-  "driver_url": "https://raw.githubusercontent.com/enriquebelarte/kernel-crawl/refs/heads/main/sample-vendor/sources/drivers.json",
+  "driver_url": "https://raw.githubusercontent.com/enriquebelarte/kernel-crawl/refs/heads/main/sample-vendor/sources/driver-versions.json",
   "kernel_url": "https://raw.githubusercontent.com/enriquebelarte/kernel-crawl/refs/heads/main/sample-vendor/sources/kernel-versions.json"
 }
